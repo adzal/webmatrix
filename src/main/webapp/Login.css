@@ -1,0 +1,34 @@
+/* Style all input fields */
+input {
+	width: 100%;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	margin-top: 6px;
+	margin-bottom: 6px;
+}
+
+/* Style the submit button */
+input[type=submit] {
+	background-color: #04AA6D;
+	color: white;
+}
+
+
+/* The message box is shown when the user clicks on the password field */
+#message {
+	display: none;
+	background: #f1f1f1;
+	color: #000;
+	position: relative;
+}
+
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+	color: green;
+}
+
+/* Add a red text color and an "x" when the requirements are wrong */
+.invalid {
+	color: red;
+}
