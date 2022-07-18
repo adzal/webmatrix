@@ -16,7 +16,7 @@ public class ConsultantDAO {
 	public ConsultantDAO() {
 		url = "jdbc:mysql://localhost:3306/matrix";
 		userName = "java";
-		password = "java";
+		password = "FS0ZEHzh";
 		
 		// registering the jdbc driver here, your string to use
 		// here depends on what driver you are using.

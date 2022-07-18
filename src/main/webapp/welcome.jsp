@@ -25,8 +25,15 @@
 				<p class="invalid">You must change your password:</p>
 			</div>
 		</c:if>
-		<a href="ChangePassword?email=${consultant.email}"
-			class="fw-bold text-body">Click here to change password</a>
+		<div class="row">
+		<div class="col-12 col-md-6">
+			<a href="ChangePassword?email=${consultant.email}"
+				class="fw-bold text-body">Click here to change password</a>
+		</div>		
+		<div class="col-12 col-md-6">
+			<a href="LogOut"
+				class="fw-bold text-body">Click here to log out.</a>
+		</div>
 	</div>
 </body>
 </html>

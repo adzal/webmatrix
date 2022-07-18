@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -49,6 +50,13 @@ public class Login extends HttpServlet {
 			if (loginDao.validate(email, password)) {
 				Consultant consultant = loginDao.getConsultant(email);
 				request.setAttribute("consultant", consultant);
+				
+				//Successful login lets set a cookie 
+	            Cookie webMatrixCookie = new Cookie("webmatrixlogin", email);
+	            // setting cookie to expiry in 10 mins
+	            webMatrixCookie.setMaxAge(10 * 60);
+	            response.addCookie(webMatrixCookie);
+	            
 				message = "Welcome back " +
 						consultant.getPrenom() + " " +
 						consultant.getNom();
