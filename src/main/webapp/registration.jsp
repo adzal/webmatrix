@@ -23,43 +23,69 @@
 </c:if>
 
   <form action="Registration" method="post">
-	<label for="nom" class="d-flex">Your lastname</label>
-	<input type="text" class="form-control" id="nom"
-		placeholder="Enter lastename" name="nom"
-		value="${consultant.nom}" required />
-
-	<label for="prenom" class="d-flex">Your firstname</label>	
-	<input type="text" class="form-control" id="prenom"
-		placeholder="Enter firstname" name="prenom" 
-		value="${consultant.prenom}" required />
-
-	<label for="email" class="d-flex">Your email</label>
-	<input type="email" id="email" name="email" 
-		placeholder="Enter email address"  
-		class="form-control validate"
-		value="${consultant.email}" required />
-
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password" 
-    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
-    title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
-
-<div id="message">
-  <span>Password must contain: </span>
-  <span id="letter" class="invalid">A <b>lowercase</b> letter, </span>
-  <span id="capital" class="invalid">A <b>capital (uppercase)</b> letter, </span>
-  <span id="number" class="invalid">A <b>number</b>, </span>
-  <span id="length" class="invalid">Minimum <b>8 characters</b>.</span>
-</div>
-
-    <label for="password2">Confirm Password</label>
-    <input type="password" id="password2" name="password2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+  	<div class="row align-items-center">
+		<div class="col-12 col-md-3">Your lastname</div>
+		<div class="col-12 col-md-9">
+		<input type="text" class="form-control" id="nom"
+			placeholder="Enter lastname" name="nom"
+			value="${consultant.nom}" required />
+		</div>
+	</div>
+ 	<div class="row align-items-center">
+		<div class="col-12 col-md-3">Your firstname</div>
+		<div class="col-12 col-md-9">	
+		<input type="text" class="form-control" id="prenom"
+			placeholder="Enter firstname" name="prenom" 
+			value="${consultant.prenom}" required />
+		</div>
+	</div>
+  	<div class="row align-items-center">
+		<div class="col-12 col-md-3">Your email</div>
+		<div class="col-12 col-md-9">	
+		<input type="email" id="email" name="email" 
+			placeholder="Enter email address"  
+			class="form-control validate"
+			value="${consultant.email}" required />
+		</div>
+	</div>
+	<div class="row align-items-center">
+		<div class="col-12 col-md-3">Password</div>
+		<div class="col-12 col-md-9">	
+			<input type="password" id="password" name="password" 
+		    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+		    title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+		</div>
+		<div class="col-12 col-md-9 offset-md-3" id="message">
+		  <span>Password must contain: </span>
+		  <span id="letter" class="invalid">A <b>lowercase</b> letter, </span>
+		  <span id="capital" class="invalid">an <b>uppercase</b> letter, </span>
+		  <span id="number" class="invalid">a <b>number</b>, </span>
+		  <span id="length" class="invalid">minimum <b>8 characters</b>.</span>
+		</div>		
+	</div>
+  
     
-	<button type="sumbit" >Create account</button>
-	<p class="text-center text-muted mt-5 mb-0">
-		Have already an account? <a href="Login"
-			class="fw-bold text-body"><u>Login here</u></a>
-	</p>
+  	<div class="row align-items-center">
+		<div class="col-12 col-md-3">Confirm Password</div>
+		<div class="col-12 col-md-9">	
+			<input type="password" id="password2" name="password2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+    	</div>
+	</div>
+
+  	<div class="row align-items-center">
+		<div class="col-12 col-md-9 offset-md-3">		
+			<button type="sumbit" class="btn btn-primary mt-3">Create account</button>
+		</div>
+	</div>
+	
+	<div class="row align-items-center">
+		<div class="col-12 col-md-9 offset-md-3 mt-2">		
+			Have already an account? <a href="Login"
+			class="fw-bold text-body">Login here</a>
+		</div>
+	</div>
+	
+	
   </form>
 </div>
 

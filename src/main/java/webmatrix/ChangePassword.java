@@ -1,4 +1,4 @@
-package webtest;
+package webmatrix;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -52,10 +52,10 @@ public class ChangePassword extends HttpServlet {
 			if (dao.changePassword(email, oldPassword, newPassword)) {
 				Consultant consultant = dao.getConsultant(email);
 				request.setAttribute("consultant", consultant);
-				message = "Password reset for " +
+				page = "/welcome.jsp";
+				message = "Password for " +
 						consultant.getPrenom() + " " +
-						consultant.getNom();
-
+						consultant.getNom() + " changed successfully";
 			} else {
 				page = "/changepassword.jsp";
 				request.setAttribute("email", email);

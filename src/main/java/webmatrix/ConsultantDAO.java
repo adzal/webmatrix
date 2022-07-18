@@ -1,4 +1,4 @@
-package webtest;
+package webmatrix;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -17,7 +17,7 @@ public class ConsultantDAO {
 		url = "jdbc:mysql://localhost:3306/matrix";
 		userName = "java";
 		password = "java";
-
+		
 		// registering the jdbc driver here, your string to use
 		// here depends on what driver you are using.
 		try {

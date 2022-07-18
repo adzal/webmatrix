@@ -15,13 +15,24 @@
 
 <body>
 	<div class="container bg-light border">
-		<h2>Welcome to my site!</h2>
-
-		<div class="row">
-			<div class="col-md-6">
+		<h2>Web Matrix</h2>
+		<h3>Management of consultants skills matrix.</h3>
+		<div class="row align-items-center">
+			<div>
+			<p>A platform that allows consultants to update there skill sets. 
+			Then for the business managers to be able to search on these skills.</p>
+			<ul>
+				<li>Need to be able to apply skills to consultant by either the business manager or consultant themselves.</li>
+				<li>All skills should be searchable.</li>
+				<li>Consultants will be able to log in via a website.</li>
+			</ul>
+			</div>
+		</div>
+  		<div class="row align-items-center">
+			<div class="col-12 col-md-6">
 				<a href="Login" class="fw-bold text-body">Sign in</a>
 			</div>
-			<div class="col-md-6">
+			<div class="col-12 col-md-6">
 				<a href="Registration" class="fw-bold text-body">Create Account</a>
 			</div>
 		</div>

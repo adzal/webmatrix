@@ -22,34 +22,52 @@
 	<p class="invalid">${message}</p>
 </c:if>		
 <form action="ChangePassword" method="post">
-	<label for="email" class="d-flex">Your email</label>
-	<input type="email" id="email" name="email" 
-		placeholder="Enter email address"  
-		class="form-control validate"
-		value=<%= request.getParameter("email") %> required />
-		
-    <label for="oldpassword">Old Password</label>
-    <input type="password" id="oldpassword" name="oldpassword" required>
 
-    <label for="password">New Password</label>
-    <input type="password" id="password" name="password"
-     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
-     title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
-     
-	<div id="message">
-	  <span>Password must contain: </span>
-	  <span id="letter" class="invalid">A <b>lowercase</b> letter, </span>
-	  <span id="capital" class="invalid">A <b>capital (uppercase)</b> letter, </span>
-	  <span id="number" class="invalid">A <b>number</b>, </span>
-	  <span id="length" class="invalid">Minimum <b>8 characters</b>.</span>
+	<div class="row align-items-center">
+		<div class="col-12 col-md-4">Your email</div>
+		<div class="col-12 col-md-8">	
+		<input type="email" id="email" name="email" 
+			placeholder="Enter email address"  
+			class="form-control validate"
+			value=<%= request.getParameter("email") %> required />
+		</div>
 	</div>
 	
-    <label for="password2">Confirm New Password</label>
-    <input type="password" id="password2" name="password2" 
-    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
-    title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+  	<div class="row align-items-center">
+		<div class="col-12 col-md-4">Old Password</div>
+		<div class="col-12 col-md-8">	
+	  	<input type="password" id="oldpassword" name="oldpassword" required>	
+		</div>
+	</div>
+
+  	<div class="row align-items-center">
+		<div class="col-12 col-md-4">New Password</div>
+		<div class="col-12 col-md-8">	
+			<input type="password" id="password" name="password" 
+		    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+		    title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+		</div>
+		<div class="col-12 col-md-8 offset-md-4" id="message">
+		  <span>Password must contain: </span>
+		  <span id="letter" class="invalid">A <b>lowercase</b> letter, </span>
+		  <span id="capital" class="invalid">an <b>uppercase</b> letter, </span>
+		  <span id="number" class="invalid">a <b>number</b>, </span>
+		  <span id="length" class="invalid">minimum <b>8 characters</b>.</span>
+		</div>		
+	</div>
     
-	<button type="sumbit" >Create account</button>
+  	<div class="row align-items-center">
+		<div class="col-12 col-md-4">Confirm New Password</div>
+		<div class="col-12 col-md-8">	
+			<input type="password" id="password2" name="password2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+    	</div>
+	</div>
+    
+  	<div class="row align-items-center">
+   		<div class="col-12 col-md-9 offset-md-4">		
+			<button type="sumbit" >Change password</button>
+		</div>
+	</div>
 	
  	<script type="text/javascript" src="password.js"></script>
   </form>

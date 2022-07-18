@@ -1,4 +1,4 @@
-package webtest;
+package webmatrix;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -27,7 +27,13 @@ public class Welcome extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		getServletContext().getRequestDispatcher("/welcome.jsp").forward(request, response);
+		Consultant consultant = (Consultant)request.getAttribute("consultant");
+		String page="/welcome.jsp";
+		if (consultant == null) {
+			page="/login.jsp";
+			request.setAttribute("message", "Must login to access Welcome page");
+		}
+		getServletContext().getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**

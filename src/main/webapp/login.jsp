@@ -17,48 +17,38 @@
 
 <body>
 	<div class="container bg-light border">
-		<h2>Web login!</h2>
+		<h2>Consultant login</h2>
 		<c:if test="${not empty message}">
 			<p class="invalid">${message}</p>
 		</c:if>
 		
-		<form action="Login" method="post" class="was-validated">
-			<div class="row">
-				<div class="col-md-3">
-					<label for="email" class="form-label">Email:</label> 
-				</div>
-				<div class="col-md-9">
+		<form action="Login" method="post">
+  			<div class="row align-items-center">
+				<div class="col-12 col-md-3">Email</div>
+				<div class="col-12 col-md-9">
 					<input type="text" class="form-control" id="email"
 						placeholder="Enter email address" name="email" 
 						value="${email}" required />
-		
-					<div class="valid-feedback">Valid.</div>
-					<div class="invalid-feedback">Please enter email address.</div>
 				</div>
 			</div>
 				
-			<div class="row">
-				<div class="col-md-3">
-				<label for="pwd" class="form-label">Password:</label> 
-				</div>
-				<div class="col-md-9">
+		  	<div class="row align-items-center">
+				<div class="col-12 col-md-3">Password</div>
+				<div class="col-12 col-md-9">
 					<input type="password" class="form-control" id="password"
 						placeholder="Enter password"
 						name="password" required>
-					<div class="valid-feedback">Valid.</div>
-					<div class="invalid-feedback">Please fill out this field.</div>
 				</div>
 				</div>
 				
-				<div class="row">
-					<div class="col-md-3">
-					<a href="Registration" class="fw-bold text-body">Create Account</a>
-					
-					</div>
-					<div class="col-md-9">
-						<button type="submit" class="btn btn-primary">Submit</button>
-					</div>
+		  	<div class="row align-items-center mt-3">
+				<div class="col-12 col-md-3">
+					<a href="Registration" class="fw-bold text-body">Create Account</a>				
 				</div>
+				<div class="col-12 col-md-9">
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</div>
+			</div>
 		</form>
 
 	</div>

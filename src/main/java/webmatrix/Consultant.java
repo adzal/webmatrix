@@ -1,4 +1,4 @@
-package webtest;
+package webmatrix;
 
 public class Consultant {
 	private String email;

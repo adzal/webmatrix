@@ -1,4 +1,4 @@
-package webtest;
+package webmatrix;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -53,9 +53,9 @@ public class Registration extends HttpServlet {
 		try {
 			dao.insertConsultant(consultant);
 			page = "/welcome.jsp";
+			request.setAttribute("consultant", consultant);
 			message="Thanks for joining us " + consultant.getPrenom() + 
-					" " + consultant.getNom() + ".";
-			
+					" " + consultant.getNom() + ".";			
 		} catch (SQLIntegrityConstraintViolationException ie) {
 			message="Error account already exists";
 		} catch (SQLException e) {
