@@ -1,5 +1,13 @@
 package webmatrix;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,17 +15,34 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLSyntaxErrorException;
+import java.util.stream.Collectors;
+
+import org.apache.tomcat.util.json.JSONParser;
 
 public class ConsultantDAO {
-	private String url;
-	private String userName;
-	private String password;
+	private static String url;
+	private static String userName;
+	private static String password;
 
 	public ConsultantDAO() {
-		url = "jdbc:mysql://localhost:3306/matrix";
-		userName = "java";
-		password = "java";
-		
+		if (url == null) {
+			URL u = getClass().getResource("/dbConnection.txt");
+			try (InputStream inputStream = u.openStream();
+					BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+				int index = 0;
+				while (reader.ready()) {
+					String line = reader.readLine();
+					switch (index++) {
+					case 0 -> url = line;
+					case 1 -> userName = line;
+					case 2 -> password = line;
+					}
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		// registering the jdbc driver here, your string to use
 		// here depends on what driver you are using.
 		try {
@@ -89,12 +114,12 @@ public class ConsultantDAO {
 		}
 	}
 
-	public boolean changePassword(String email, String oldPassword, String newPassword) throws SQLException, SQLSyntaxErrorException {
+	public boolean changePassword(String email, String oldPassword, String newPassword)
+			throws SQLException, SQLSyntaxErrorException {
 		String q = "{CALL change_password(?,?,?,?)}";
 
 		try (Connection connection = DriverManager.getConnection(this.url, this.userName, this.password);
-				CallableStatement callable = connection.prepareCall(q);
-				) {
+				CallableStatement callable = connection.prepareCall(q);) {
 			callable.setString(1, email);
 			callable.setString(2, oldPassword);
 			callable.setString(3, newPassword);

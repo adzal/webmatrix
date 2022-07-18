@@ -43,7 +43,7 @@ public class LogOut extends HttpServlet {
 			loginCookie.setMaxAge(0);
 			response.addCookie(loginCookie);
 		}
-		response.sendRedirect("index.jsp");
+		getServletContext().getRequestDispatcher("/").forward(request, response);
 	}
 
 	/**

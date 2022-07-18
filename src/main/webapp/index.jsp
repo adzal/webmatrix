@@ -11,11 +11,16 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
+
+<link rel="stylesheet" href="Login.css">	
 </head>
 
 <body>
 	<div class="container bg-light border">
 		<h2>Web Matrix</h2>
+		<c:if test="${not empty message}">
+			<p class="invalid">${message}</p>
+		</c:if>
 		<h3>Management of consultants skills matrix.</h3>
 		<div class="row align-items-center">
 			<div>
