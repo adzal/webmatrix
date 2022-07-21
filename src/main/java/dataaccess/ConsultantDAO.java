@@ -1,4 +1,4 @@
-package webmatrix;
+package dataaccess;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -18,6 +18,8 @@ import java.sql.SQLSyntaxErrorException;
 import java.util.stream.Collectors;
 
 import org.apache.tomcat.util.json.JSONParser;
+
+import model.Consultant;
 
 public class ConsultantDAO {
 	private static String url;

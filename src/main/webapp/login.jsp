@@ -39,18 +39,23 @@
 						placeholder="Enter password"
 						name="password" required>
 				</div>
-				</div>
-				
+			</div>			
+			
 		  	<div class="row align-items-center mt-3">
 				<div class="col-12 col-md-3">
 					<a href="Registration" class="fw-bold text-body">Create Account</a>				
 				</div>
 				<div class="col-12 col-md-9">
 					<button type="submit" class="btn btn-primary">Submit</button>
-				</div>
+			
+					<div class="form-check">
+		              <input class="form-check-input" name="rememberme" 
+		              type="checkbox" value="0"  >
+		              <label class="form-check-label"> Remember me</label>
+		            </div>
+		    	</div>	
 			</div>
 		</form>
-
 	</div>
 </body>
 

@@ -29,7 +29,7 @@
 		<input type="email" id="email" name="email" 
 			placeholder="Enter email address"  
 			class="form-control validate"
-			value=<%= request.getParameter("email") %> required />
+			value="${consultant.email}" required />
 		</div>
 	</div>
 	

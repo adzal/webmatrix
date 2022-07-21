@@ -1,6 +1,8 @@
-package webmatrix;
+package model;
 
-public class Consultant {
+import java.io.Serializable;
+
+public class Consultant implements Serializable{
 	private String email;
 	private String password;
 	private String nom;
@@ -8,6 +10,9 @@ public class Consultant {
 	private String commentaire;
 	private int consultantId;
 	private boolean isChangePassword;
+
+	public Consultant() {
+	}
 
 	public boolean getIsChangePassword() {
 		return isChangePassword;

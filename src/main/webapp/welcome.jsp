@@ -27,7 +27,7 @@
 		</c:if>
 		<div class="row">
 		<div class="col-12 col-md-6">
-			<a href="ChangePassword?email=${consultant.email}"
+			<a href="ChangePassword"
 				class="fw-bold text-body">Click here to change password</a>
 		</div>		
 		<div class="col-12 col-md-6">

@@ -2,12 +2,16 @@ package webmatrix;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Optional;
 
+import dataaccess.ConsultantDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import model.Consultant;
 
 /**
  * Servlet implementation class Login
@@ -40,23 +44,28 @@ public class Login extends HttpServlet {
 			HttpServletResponse response)
 			throws ServletException, IOException {
 
+		HttpSession session = request.getSession();
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-
+		Optional<String> rememberMe = Optional.ofNullable(request.getParameter("rememberme"));
+	
 		try {
 			ConsultantDAO loginDao = new ConsultantDAO();
 			String page = "/login.jsp";
 			String message = "";
 			if (loginDao.validate(email, password)) {
 				Consultant consultant = loginDao.getConsultant(email);
-				request.setAttribute("consultant", consultant);
+				session.setAttribute("consultant", consultant);
+
+				if (rememberMe.isPresent()) {
+					// We checked the box to remember me and a
+					// successful login, lets set a cookie.
+					Cookie webMatrixCookie = new Cookie("webmatrixlogin", email);
+					// setting cookie to expiry in 10 mins
+					webMatrixCookie.setMaxAge(10 * 60);
+					response.addCookie(webMatrixCookie);
+				}
 				
-				//Successful login lets set a cookie 
-	            Cookie webMatrixCookie = new Cookie("webmatrixlogin", email);
-	            // setting cookie to expiry in 10 mins
-	            webMatrixCookie.setMaxAge(10 * 60);
-	            response.addCookie(webMatrixCookie);
-	            
 				message = "Welcome back " +
 						consultant.getPrenom() + " " +
 						consultant.getNom();

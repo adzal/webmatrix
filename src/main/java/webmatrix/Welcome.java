@@ -6,8 +6,13 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import model.Consultant;
+
 import java.io.IOException;
 import java.sql.SQLException;
+
+import dataaccess.ConsultantDAO;
 
 /**
  * Servlet implementation class Welcome
@@ -29,17 +34,19 @@ public class Welcome extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		Consultant consultant = (Consultant) request.getAttribute("consultant");
+		HttpSession session = request.getSession();
+		Consultant consultant = (Consultant) session.getAttribute("consultant");
 		String page = "/welcome.jsp";
 		if (consultant == null) {
-			// We have no consultant lets see if we have a cookie instead.			
+			// We have no consultant lets see if we have a cookie instead.
 			String email = null;
 			Cookie[] cookies = request.getCookies();
 			if (cookies != null) {
 				for (Cookie cookie : cookies) {
-					if (cookie.getName().equals("webmatrixlogin"))
+					System.out.println(cookie.getName() + "/" + cookie.getValue());
+					if (cookie.getName().equals("webmatrixlogin")) {
 						email = cookie.getValue();
+					}
 				}
 			}
 
