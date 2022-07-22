@@ -18,6 +18,8 @@ import model.Consultant;
  */
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private final String WELCOME_PAGE = "/WEB-INF/welcome.jsp";
+	private final String LOGIN_PAGE = "/WEB-INF/login.jsp";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -33,7 +35,7 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher(LOGIN_PAGE).forward(request, response);
 	}
 
 	/**
@@ -51,10 +53,11 @@ public class Login extends HttpServlet {
 	
 		try {
 			ConsultantDAO loginDao = new ConsultantDAO();
-			String page = "/login.jsp";
+			String page = LOGIN_PAGE;
 			String message = "";
 			if (loginDao.validate(email, password)) {
 				Consultant consultant = loginDao.getConsultant(email);
+				consultant.setIsCookieLogin(false);
 				session.setAttribute("consultant", consultant);
 
 				if (rememberMe.isPresent()) {
@@ -70,7 +73,7 @@ public class Login extends HttpServlet {
 						consultant.getPrenom() + " " +
 						consultant.getNom();
 
-				page = "/welcome.jsp";
+				page = WELCOME_PAGE;
 			} else {
 				request.setAttribute("email", email);
 				message = "Login error.";

@@ -22,20 +22,20 @@ import org.apache.tomcat.util.json.JSONParser;
 import model.Consultant;
 
 public class ConsultantDAO {
-	private static String url;
+	private static String dbUrl;
 	private static String userName;
 	private static String password;
 
 	public ConsultantDAO() {
-		if (url == null) {
-			URL u = getClass().getResource("/dbConnection.txt");
-			try (InputStream inputStream = u.openStream();
+		if (dbUrl == null) {
+			URL url = getClass().getResource("/dbConnection.txt");
+			try (InputStream inputStream = url.openStream();
 					BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
 				int index = 0;
 				while (reader.ready()) {
 					String line = reader.readLine();
 					switch (index++) {
-					case 0 -> url = line;
+					case 0 -> dbUrl = line;
 					case 1 -> userName = line;
 					case 2 -> password = line;
 					}
@@ -59,7 +59,7 @@ public class ConsultantDAO {
 
 		String q = "SELECT validate_password(?, ?)";
 
-		try (Connection connection = DriverManager.getConnection(this.url, this.userName, this.password);
+		try (Connection connection = DriverManager.getConnection(this.dbUrl, this.userName, this.password);
 				PreparedStatement p = connection.prepareStatement(q)) {
 			p.setString(1, email);
 			p.setString(2, password);
@@ -80,7 +80,7 @@ public class ConsultantDAO {
 				+ "FROM Consultant "
 				+ "where email = ?";
 
-		try (Connection connection = DriverManager.getConnection(this.url, this.userName, this.password);
+		try (Connection connection = DriverManager.getConnection(this.dbUrl, this.userName, this.password);
 				PreparedStatement p = connection.prepareStatement(q)) {
 			p.setString(1, email);
 
@@ -104,7 +104,7 @@ public class ConsultantDAO {
 	public void insertConsultant(Consultant consultant) throws SQLException {
 		String q = "{CALL create_consultant(?,?,?,?,?)}";
 
-		try (Connection connection = DriverManager.getConnection(this.url, this.userName, this.password);
+		try (Connection connection = DriverManager.getConnection(this.dbUrl, this.userName, this.password);
 				CallableStatement callable = connection.prepareCall(q);) {
 			callable.setString(1, consultant.getNom());
 			callable.setString(2, consultant.getPrenom());
@@ -120,7 +120,7 @@ public class ConsultantDAO {
 			throws SQLException, SQLSyntaxErrorException {
 		String q = "{CALL change_password(?,?,?,?)}";
 
-		try (Connection connection = DriverManager.getConnection(this.url, this.userName, this.password);
+		try (Connection connection = DriverManager.getConnection(this.dbUrl, this.userName, this.password);
 				CallableStatement callable = connection.prepareCall(q);) {
 			callable.setString(1, email);
 			callable.setString(2, oldPassword);

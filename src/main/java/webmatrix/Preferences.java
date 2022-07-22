@@ -1,24 +1,27 @@
 package webmatrix;
 
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.Optional;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.Consultant;
 
 /**
- * Servlet implementation class LogOut
+ * Servlet implementation class Preferences
  */
-public class LogOut extends HttpServlet {
+public class Preferences extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private final String PREFERENCES_PAGE = "/WEB-INF/Preferences.jsp";
+	private final String LOGIN_PAGE = "/WEB-INF/login.jsp";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public LogOut() {
+	public Preferences() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -29,36 +32,18 @@ public class LogOut extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.setContentType("text/html");
-
 		HttpSession session = request.getSession();
-		session.invalidate();
+		Optional<Consultant> consultant = Optional.ofNullable((Consultant) session.getAttribute("consultant"));
+		String page = PREFERENCES_PAGE;
+		String message = "Welcome to preferences page.";
 
-		Arrays.stream(request.getCookies())
-				.filter(c -> "webmatrixlogin".equals(c.getName()))
-				.findAny()
-				.ifPresent(c -> {
-					// If a matching cookie set max Age to 0 then add to response
-					c.setMaxAge(0);
-					response.addCookie(c);
-				});
-
-//		Cookie loginCookie = null;
-//		Cookie[] cookies = request.getCookies();
-//		if (cookies != null) {
-//			for (Cookie cookie : cookies) {
-//				if (cookie.getName().equals("webmatrixlogin")) {
-//					loginCookie = cookie;
-//					break;
-//				}
-//			}
-//		}
-//		if (loginCookie != null) {
-//			loginCookie.setMaxAge(0);
-//			response.addCookie(loginCookie);
-//		}
-		
-		getServletContext().getRequestDispatcher("/").forward(request, response);
+		// If no consultant or if we logged in via a cookie go to login page
+		if (consultant.map(Consultant::getIsCookieLogin).orElse(true)) {
+			message = "You must re-login to update preferences.";
+			page = LOGIN_PAGE;
+		}
+		request.setAttribute("message", message);
+		getServletContext().getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**
@@ -67,7 +52,6 @@ public class LogOut extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 	}
 
 }

@@ -62,4 +62,14 @@
     <servlet-name>LogOut</servlet-name>
     <url-pattern>/LogOut</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Preferences</display-name>
+    <servlet-name>Preferences</servlet-name>
+    <servlet-class>webmatrix.Preferences</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Preferences</servlet-name>
+    <url-pattern>/Preferences</url-pattern>
+  </servlet-mapping>
 </web-app>

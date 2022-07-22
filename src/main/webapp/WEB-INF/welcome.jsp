@@ -33,6 +33,10 @@
 		<div class="col-12 col-md-6">
 			<a href="LogOut"
 				class="fw-bold text-body">Click here to log out.</a>
+		</div>	
+		<div class="col-12 col-md-6">
+			<a href="Preferences"
+				class="fw-bold text-body">Click here to change preferences.</a>
 		</div>
 	</div>
 </body>

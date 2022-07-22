@@ -17,7 +17,9 @@ import model.Consultant;
  */
 public class Registration extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private final String REGISTRATION_PAGE = "/WEB-INF/registration.jsp";
+	private final String WELCOME_PAGE = "/WEB-INF/welcome.jsp";
+	
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -32,7 +34,10 @@ public class Registration extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		getServletContext().getRequestDispatcher("/registration.jsp").forward(request, response);
+		// Create a NEW users so invalidate current consultant
+		HttpSession session = request.getSession();
+		session.invalidate();
+		getServletContext().getRequestDispatcher(REGISTRATION_PAGE).forward(request, response);
 	}
 
 	/**
@@ -53,7 +58,7 @@ public class Registration extends HttpServlet {
 		consultant.setCommentaire(request.getParameter("commentaire"));
 
 		ConsultantDAO dao = new ConsultantDAO();
-		String page = "/registration.jsp";
+		String page = REGISTRATION_PAGE;
 		String message = "";
 		try {
 			if (consultant.getEmail().isBlank() ||
@@ -66,7 +71,7 @@ public class Registration extends HttpServlet {
 			} else {
 				// Check we
 				dao.insertConsultant(consultant);
-				page = "/welcome.jsp";
+				page = WELCOME_PAGE;
 				request.setAttribute("consultant", consultant);
 				message = "Thanks for joining us " + consultant.getPrenom() +
 						" " + consultant.getNom() + ".";

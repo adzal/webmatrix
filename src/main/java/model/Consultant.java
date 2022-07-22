@@ -10,6 +10,7 @@ public class Consultant implements Serializable{
 	private String commentaire;
 	private int consultantId;
 	private boolean isChangePassword;
+	private boolean isCookieLogin = false;
 
 	public Consultant() {
 	}
@@ -74,5 +75,13 @@ public class Consultant implements Serializable{
 
 	public void setSetConsultantId(int setConsultantId) {
 		this.consultantId = setConsultantId;
+	}
+
+	public boolean getIsCookieLogin() {
+		return isCookieLogin;
+	}
+
+	public void setIsCookieLogin(boolean isCookieLogin) {
+		this.isCookieLogin = isCookieLogin;
 	}
 }
